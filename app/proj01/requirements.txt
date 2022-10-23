@@ -1,0 +1,4 @@
+scrapy
+scrapy-user-agents
+setuptools
+psycopg2-binary
