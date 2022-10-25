@@ -18,7 +18,7 @@ serverPort = 8080
 
 
 class MyServer(BaseHTTPRequestHandler):
-    logging.warning("DBGM11")
+    
     def do_GET(self):
 
         cursor = conn.cursor()
@@ -43,31 +43,26 @@ def main():
     process = CrawlerProcess(get_project_settings())
     process.crawl(SrealitySpider)
     process.start()
-    logging.warning("FINISHED")
+    
     run_server()
-    logging.warning("DBGM5")
+    
 
 
 def run_server():
-    logging.warning("DBGM6...")
+    
     webServer = HTTPServer((hostName, serverPort), MyServer)
     SimpleHTTPRequestHandler.extensions_map = {k: v + ';charset=UTF-8' for k, v in
                                                SimpleHTTPRequestHandler.extensions_map.items()}
     logging.warning("Server started http://%s:%s" % (hostName, serverPort))
-    logging.warning("DBGM7")
+    
     try:
-        logging.warning("DBGM8")
         webServer.serve_forever()
-        logging.warning("DBGM8.2")
     except KeyboardInterrupt:
         pass
-    else:
-        logging.warning("DBGM12")
-    logging.warning("DBGM9")
+   
     webServer.server_close()
-    print("Server stopped.")
+    logging.warning("Server stopped.")
 
 
 if __name__ == "__main__":
-    logging.warning("DBGM10")
     main()
