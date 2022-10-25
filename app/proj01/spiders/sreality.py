@@ -78,13 +78,9 @@ class SrealitySpider(scrapy.Spider):
             cursor.execute("INSERT INTO properties(title, image) VALUES(%s, %s)",
                            (result['description'], result['image']))
 
-        logging.warning("DBGM1")
         conn.commit()
-        logging.warning("DBGM2")
         cursor.close()
-        logging.warning("DBGM3")
         conn.close()
-        logging.warning("DBGM4")
 
 
 
