@@ -37,18 +37,18 @@ class SrealitySpider(scrapy.Spider):
         if nextpageurl:
             path = nextpageurl.extract_first()
             nextpage = response.urljoin(path)
-            print("Found url: {}".format(nextpage))
+            logging.warning("Found url: {}".format(nextpage))
             yield scrapy.Request(nextpage, meta=dict(
                 playwright=True,
                 playwright_page_methods=[PageMethod('wait_for_selector', 'div.paging')]
             ), callback=self.parse)
         else:
-            print("ERR NEXT PAGE NOT FOUND")
+            logging.warning("ERR NEXT PAGE NOT FOUND")
 
     def scrape(self, response):
 
         for resource in response.css('.property'):
-            if self.yieldCounter < 500:
+            if self.yieldCounter < 100:
                 # Loop over each item on the page.
                 item = Proj01Item()  # Creating a new Item object
 
